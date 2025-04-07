@@ -1,38 +1,303 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #fdf1f6, #ffe8f0);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .App {
+  text-align: center;
+  padding: 40px;
+  max-width: 900px;
+  width: 100%;
+}
+
+h1 {
+  color: hotpink;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.palette-grid {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.color-card {
+  padding: 20px;
+  border-radius: 16px;
+  width: 120px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.color-card:hover {
+  transform: translateY(-4px);
+}
+
+.hex {
+  font-weight: bold;
+  color: #222;
+  margin-top: auto;
+  margin-bottom: 8px;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.generate-button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  background-color: hotpink;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 4px 10px rgba(255, 105, 180, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.generate-button:hover {
+  transform: scale(1.05);
+}
+
+.color-card {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.color-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sparkle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.2rem;
+  animation: sparkleAnim 0.6s ease-out;
+}
+
+@keyframes sparkleAnim {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.5); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+.lock {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 4px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lock:hover {
+  opacity: 1;
+}
+
+.lock svg {
+  color: #444;
+}
+
+.copy-message {
+  position: absolute;
+  bottom: 8px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #ff69b4;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 12px;
+  animation: fade 1.5s ease-in-out;
+}
+
+.lock-icon {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 8px;
+}
+
+.save-button {
+  margin-top: 12px;
+  padding: 10px 18px;
+  background: hotpink;
+  border-radius: 20px;
+  color: white;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.save-button:hover {
+  transform: scale(1.05);
+}
+
+.saved-palettes {
+  margin-top: 40px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.saved-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.saved-palette {
+  display: flex;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.saved-palette:hover {
+  transform: scale(1.04);
+}
+
+.saved-swatch {
+  width: 24px;
+  height: 24px;
+}
+
+.button-group {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.button-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.clear-button {
+  background-color: #f3dce4;
+  color: #b30059;
+  font-weight: 600;
+  padding: 10px 16px;
+  border: 2px solid hotpink;
+  border-radius: 20px;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.clear-button:hover {
+  background: hotpink;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.name-input {
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  outline: none;
+  width: 200px;
+  margin-top: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.palette-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.palette-name {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #888;
+}
+
+.delete-button:hover {
+  color: hotpink;
+}
+
+.harmony-select {
+  margin-top: 12px;
+  padding: 10px 16px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
+  background: white;
+  outline: none;
+}
+
+.cute-dropdown {
+  padding: 8px 14px;
+  border: 2px solid hotpink;
+  border-radius: 12px;
+  font-weight: 500;
+  background-color: #fff5fa;
+  color: #cc2b7c;
+  box-shadow: 0 4px 10px rgba(255, 192, 203, 0.3);
+  transition: 0.2s ease;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+
+
+
+
+
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
   }
 }
+
+@keyframes fade {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+
